@@ -1,0 +1,119 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
+    }
+}
+
+allprojects{
+    repositories{
+        maven { url "https://jitpack.io" }
+        maven { url "https://jcenter.bintray.com" }
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+    //material Design
+    compile 'com.android.support:design:25.3.1'
+    //logutils
+    //    compile 'com.apkfuns.logutils:library:1.4.2.2'
+    compile 'com.orhanobut:logger:1.3'
+    //recyclerView
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.daimajia.swipelayout:library:1.2.0@aar'
+    //RxAndroid
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //RxJava2
+    compile 'io.reactivex.rxjava2:rxjava:2.0.7'
+    //Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    //    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    //RxBinding
+    compile 'com.squareup.retrofit2:converter-scalars:2.1.0'
+    //    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    //    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.4.0'
+    //    compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.4.0'
+    //okhttp公共请求参数拦截器
+    compile 'com.github.jkyeo:okhttp-basicparamsinterceptor:v0.9'
+    //butterknife
+    compile 'com.jakewharton:butterknife:8.4.0'
+    //banner
+    compile 'com.youth.banner:banner:1.4.9'
+    //glide 图片加载
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'jp.wasabeef:glide-transformations:2.0.2'
+    // If you want to use the GPU Filters
+    compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    //t他不layout
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    //动态改变状态栏
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    //带图片的B冉
+    compile 'com.githang:com-phillipcalvin-iconbutton:1.0.1@aar'
+    //    compile 'com.marshalchen.ultimaterecyclerview:library:0.7.2'
+    //quanxian apply
+    compile 'com.lovedise:permissiongen:0.0.6'
+    //弹出提示框
+    compile 'com.github.hss01248:DialogUtil:1.0.4'
+    //    //图片选择器
+    //    compile 'cn.finalteam:galleryfinal:1.4.8.7'
+    compile project(':gallerypick')
+    //工具泪
+    //    compile project(':utilcode')
+    compile 'com.android.support:gridlayout-v7:25.3.1'
+    compile 'com.nineoldandroids:library:2.4.0'
+//    //图片上传 进度展示
+//    compile 'ch.halcyon:squareprogressbar:1.6.0'
+    //微信支付
+    //    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    //eventBus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //metrail
+    compile 'com.github.rey5137:material:1.2.4'
+    //    compile 'com.android.support:cardview-v7:25.4.0+'
+    //右上角菜单
+    compile 'com.zaaach:toprightmenu:1.0'
+    //悬浮按钮 可以弹出多个按钮
+//    compile 'com.getbase:floatingactionbutton:1.10.1'
+
+}

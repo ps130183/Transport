@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.km.transport.module.home.path.FastPathFragment">
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiper_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_add_fast_Path">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_paths"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_space_8"
+            android:background="@color/color_white">
+
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    <Button
+        android:id="@+id/btn_add_fast_Path"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加快捷路线"
+        android:textColor="@color/color_white"
+        android:textStyle="bold"
+        android:background="@drawable/shape_button_home_hire"
+        android:layout_marginLeft="@dimen/view_space_32"
+        android:layout_marginRight="@dimen/view_space_32"
+        android:layout_marginTop="@dimen/view_space_16"
+        android:layout_marginBottom="@dimen/view_space_16"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>

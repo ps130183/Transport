@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_white"
+    android:padding="@dimen/view_space_16"
+    tools:context="com.km.transport.module.home.path.newpath.SelectTruckTypeActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="车长"
+        android:layout_marginBottom="@dimen/view_space_8"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_truck_length"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_line_1"
+        android:background="@color/color_divider1"
+        android:layout_marginTop="@dimen/view_space_8"
+        android:layout_marginBottom="@dimen/view_space_8"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="车型"
+        android:layout_marginBottom="@dimen/view_space_8"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_truck_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/view_space_48"
+        android:layout_marginRight="@dimen/view_space_48"
+        android:layout_marginTop="@dimen/view_space_32"
+        android:text="确定"
+        android:textColor="@color/color_white"
+        android:textStyle="bold"
+        android:background="@drawable/shape_button_home_hire"
+        />
+
+</LinearLayout>

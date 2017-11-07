@@ -1,0 +1,161 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.km.transport.module.personal.PersonalFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/color_blue_level_1"
+            android:padding="@dimen/view_space_16">
+
+            <ImageView
+                android:id="@+id/iv_user_portrait"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@mipmap/ic_default_portrait"
+                android:layout_marginLeft="@dimen/view_space_16"
+                android:layout_marginRight="@dimen/view_space_16"
+                android:layout_marginTop="@dimen/view_space_48"
+                android:layout_marginBottom="@dimen/view_space_48"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_user_portrait"
+                android:layout_toLeftOf="@+id/iv_arrow_right">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_nike_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="请登录"
+                        android:textColor="@color/color_white"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_size_16"
+                        android:layout_toLeftOf="@+id/tv_approve"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        />
+                    <TextView
+                        android:id="@+id/tv_approve"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="未认证"
+                        android:textColor="@color/color_white"
+                        android:textStyle="bold"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/view_space_16"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_join_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="hi,这是你加入土石物流的第1天"
+                    android:textColor="@color/color_white"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/view_space_8"
+                    android:maxLines="2"
+                    android:ellipsize="end"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_arrow_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_arrow_right_white_24"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/view_space_16"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout style="@style/Personal.function_ll">
+
+            <TextView
+                android:id="@+id/tv_my_account"
+                style="@style/Personal.function_tv"
+                android:drawableLeft="@mipmap/ic_personal_my_account"
+                android:text="  我的账户" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="50dp"
+                android:background="@color/color_divider1" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_my_message"
+                    style="@style/Personal.function_tv"
+                    android:drawableLeft="@mipmap/ic_personal_my_message"
+                    android:text="  我的消息" />
+
+                <TextView
+                    android:id="@+id/tv_unread"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/shape_message_unread_status"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:visibility="gone"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/Personal.function_ll">
+
+            <TextView
+                android:id="@+id/tv_setting"
+                style="@style/Personal.function_tv"
+                android:drawableLeft="@mipmap/ic_personal_setting"
+                android:text="  更多设置" />
+
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/Personal.function_ll">
+
+            <TextView
+                android:id="@+id/tv_service"
+                style="@style/Personal.function_tv"
+                android:drawableLeft="@mipmap/ic_personal_service"
+                android:text="  联系客服" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="50dp"
+                android:background="@color/color_divider1" />
+
+            <TextView
+                android:id="@+id/tv_about_me"
+                style="@style/Personal.function_tv"
+                android:drawableLeft="@mipmap/ic_personal_about_me"
+                android:text="  关于我们" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

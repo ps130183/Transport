@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_user_account"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.km.transport.module.personal.account.MyAccountActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/color_background_gray"
+        android:paddingBottom="@dimen/view_space_16">
+
+        <TextView
+            android:id="@+id/tv_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="@dimen/text_size_20"
+            android:textColor="@color/color_block"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/view_space_32"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元"
+            android:textColor="@color/color_block"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/tv_balance"
+            android:layout_alignBottom="@id/tv_balance"
+            android:layout_marginLeft="@dimen/view_space_4"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账户余额"
+            android:textColor="@color/color_block"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            android:layout_alignLeft="@id/tv_balance"
+            android:layout_alignParentBottom="true"
+            />
+
+        <Button
+            android:id="@+id/tv_withdraw_deposit"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:textColor="@color/color_white"
+            android:text="提现"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_16"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/view_space_32"
+            android:background="@drawable/shape_button_home_hire"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/color_white"
+        android:layout_marginTop="@dimen/view_space_16"
+        android:paddingLeft="@dimen/view_space_32">>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/view_space_8"
+            android:paddingBottom="@dimen/view_space_8">
+            <TextView
+                android:id="@+id/tv_account_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账户明细"
+                android:textSize="@dimen/text_size_18"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_line_1"
+            android:background="@color/color_divider2"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</LinearLayout>

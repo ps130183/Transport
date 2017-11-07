@@ -1,0 +1,43 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="toolbar_height">48dp</dimen>
+    <dimen name="toolbar_status_height">63dp</dimen>
+    <dimen name="status_height">15dp</dimen>
+
+    <dimen name="view_space_64">64dp</dimen>
+    <dimen name="view_space_48">48dp</dimen>
+    <dimen name="view_space_32">32dp</dimen>
+    <dimen name="view_space_16">16dp</dimen>
+    <dimen name="view_space_8">8dp</dimen>
+    <dimen name="view_space_6">6dp</dimen>
+    <dimen name="view_space_4">4dp</dimen>
+
+    <dimen name="title_size">18sp</dimen>
+
+    <dimen name="iv_width_min">48dp</dimen>
+
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_26">26sp</dimen>
+
+    <dimen name="divider_line_0.5">0.5dp</dimen>
+    <dimen name="divider_line_1">1dp</dimen>
+    <dimen name="divider_line_2">2dp</dimen>
+
+    <dimen name="sectionNormalHeight">48dp</dimen>
+    <dimen name="sectionSquareIconSize">40dp</dimen>
+    <dimen name="sectionNotificationSize">10sp</dimen>
+    <dimen name="sectionSize">15sp</dimen>
+    <dimen name="sectionRowMarginHorizontal">16sp</dimen>
+
+    <dimen name="view_width_30">30dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

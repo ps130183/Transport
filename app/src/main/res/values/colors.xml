@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#3eb0fb</color>
+
+    <color name="gallery_blue">#ffffff</color>
+
+    <color name="tab_selected_text_color">#d81e06</color>
+
+    <!--默认背景颜色-->
+    <color name="color_default_background">#f4f2f2</color>
+    <!--白色-->
+    <color name="color_white">#ffffff</color>
+    <!--黑色-->
+    <color name="color_block">#000000</color>
+    <!--标题栏背景色-->
+    <color name="color_toolbar_background">#d50000</color>
+    <color name="color_theme">#d81e06</color>
+    
+    <!-- 橘红 -->
+    <color name="color_tangerine_level_1">#f28606</color>
+    <color name="color_tangerine_level_2">#feaf6a</color>
+
+    <color name="color_stl_selected">#33ccf9</color>
+    <color name="color_stl_unselected">#cccccc</color>
+
+    <color name="color_pink">#ff78c9</color>
+
+    <color name="color_search_background">#efedecec</color>
+
+    <color name="color_text_gray">#d4d2d2</color>
+    <color name="color_text_gray1">#636363</color>
+    <color name="color_text_gray2">#888888</color>
+
+    <color name="color_background_gray">#f6f4f4</color>
+
+    <!--圆环进度条-->
+    <color name="transparency_gray_50">#80000000</color>
+
+    <!--分割线-->
+    <color name="color_divider1">#cccccc</color>
+    <color name="color_divider2">#cfcdcd</color>
+
+    <color name="gray_et_border_circular">#d1cccc</color>
+
+    <color name="color_btn_unclick">#a6a6a6</color>
+    <color name="color_btn_click">#0395f7</color>
+
+    <color name="color_text_account">#66e1ca</color>
+    <color name="color_blue_level_1">#1E8AED</color>
+    <color name="color_blue_level_2">#88C9F2</color>
+    <color name="color_blue3">#0099cf</color>
+    <color name="color_blue4">#0fa9d0</color>
+    <color name="color_blue5">#1e8aed</color>
+    <color name="color_red">#ff0109</color>
+    <color name="color_green">#62fd01</color>
+
+    <color name="btnUnPressedColor">#3a89f7</color>
+    <color name="btnPressedColor">#ffffff</color>
+
+    <color name="colorGray1">#eff6fa</color>
+    <color name="colorSubTitle">#f9f4f4</color>
+    <color name="colorAddBtnBorder">#cccccc</color>
+    <color name="colorRcDivider">#f5dada</color>
+    <color name="colorTabRbtnBackground">#fefefe</color>
+    <color name="colorTabRbtnLines">#c2c2c2</color>
+</resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.km.transport.module.order.unfinished.ShipMentActivity">
+
+    <ImageView
+        android:id="@+id/iv_shipment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_open_camera"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/view_space_16"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请点击上传出货单"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/view_space_8"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/color_white"
+        android:layout_margin="@dimen/view_space_8"
+        android:paddingTop="@dimen/view_space_8"
+        android:paddingBottom="@dimen/view_space_8">
+
+        <EditText
+            android:id="@+id/et_real_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="输入真实出货吨数"
+            style="@style/DefaultEditTextBg"
+            android:inputType="number"
+            android:drawableLeft="@mipmap/ic_left_back_block"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_line_1"
+            android:background="@color/color_divider1"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="@dimen/view_space_8"
+            android:layout_marginBottom="@dimen/view_space_8"
+            />
+
+        <EditText
+            android:id="@+id/et_leave_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="选择出厂时间"
+            style="@style/DefaultEditTextBg"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:drawableLeft="@mipmap/ic_left_back_block"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="出货完成"
+        style="@style/DefaultButtonBg"
+        android:layout_marginTop="@dimen/view_space_16"
+        />
+
+</LinearLayout>

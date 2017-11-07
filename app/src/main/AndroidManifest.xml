@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.km.transport">
+
+    <!-- if you want to maxLoad images from the internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- if you want to maxLoad images from a file OR from the internet -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+
+    <!--  友盟统计  -->
+    <uses-sdk android:minSdkVersion="8"></uses-sdk>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!--  友盟统计  -->
+
+    <!-- 多分辨率支持 -->
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <application
+        android:name=".basic.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_desktop_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!--  友盟统计  -->
+        <meta-data android:value="59e705b4677baa75cc000748" android:name="UMENG_APPKEY"/>
+        <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>
+        <!--  友盟统计  -->
+        <!--  友盟推送  -->
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="e79fa2a8c6dea85f5e655358263248a4">
+        </meta-data>
+        <!--  友盟推送  -->
+
+        <service android:name=".service.UmengPushReveiveService"/>
+
+        <activity
+            android:name=".module.MainActivity"
+            android:launchMode="singleTask">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity android:name=".module.guide.GuideActivity" />
+        <activity android:name=".module.login.LoginActivity" />
+        <activity android:name=".module.login.CreateUserCardOnLoginActivity" />
+        <activity android:name=".module.login.AgreementActivity" />
+        <activity android:name=".module.home.path.GoodsSearchActivity" />
+        <activity android:name=".module.home.path.newpath.AddFastPathActivity" />
+        <activity android:name=".module.home.path.newpath.SelectCityActivity" />
+        <activity android:name=".module.home.path.newpath.SelectTruckTypeActivity" />
+        <activity android:name=".module.home.BrowsingHistoryActivity" />
+        <activity android:name=".module.home.goods.GoodsSourceInfoActivity" />
+        <activity android:name=".module.home.goods.GoodsOrderInfoActivity" />
+        <activity android:name=".module.order.unfinished.ShipMentActivity" />
+        <activity android:name=".module.order.unfinished.PutStorageActivity" />
+        <activity android:name=".module.home.goods.GoodsOrderFinishInfoActivity" />
+        <activity android:name=".module.personal.approve.ApproveDriverInfoActivity" />
+        <activity android:name=".module.personal.approve.ApproveTruckInfoActivity" />
+        <activity android:name=".module.personal.account.MyAccountActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".module.personal.account.withdraw.CreateWithDrawAccountActivity" />
+        <activity android:name=".module.personal.account.withdraw.WithDrawListActivity" />
+        <activity android:name=".module.personal.account.withdraw.WithDrawActivity" />
+        <activity android:name=".module.guide.LaunchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".module.personal.approve.ChooseCarTypeActivity" />
+        <activity android:name=".module.personal.approve.ChooseCarAddressActivity" />
+        <activity android:name=".module.personal.SettingActivity" />
+        <activity android:name=".module.personal.AboutMeActivity" />
+        <activity android:name=".module.personal.MessageActivity"></activity>
+    </application>
+
+</manifest>

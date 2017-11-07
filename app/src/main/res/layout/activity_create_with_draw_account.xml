@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_with_draw_account"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_white"
+    tools:context="com.km.transport.module.personal.account.withdraw.CreateWithDrawAccountActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@style/BackGauge">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓            名："
+            android:textColor="@color/color_block"
+            android:textSize="@dimen/text_size_16"
+            android:padding="@dimen/view_space_8"
+            />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请填写您的真实姓名"
+            style="@style/SingleLineEditText"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_line_1"
+        android:background="@color/color_divider2"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@style/BackGauge">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联 系 电 话 ："
+            android:textColor="@color/color_block"
+            android:textSize="@dimen/text_size_16"
+            android:padding="@dimen/view_space_8"
+            />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请填写联系电话"
+            style="@style/SingleLineEditText"
+            android:inputType="phone"
+            android:maxLength="11"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_line_1"
+        android:background="@color/color_divider2"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@style/BackGauge">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提 现 类 型 ："
+            android:textColor="@color/color_block"
+            android:textSize="@dimen/text_size_16"
+            android:padding="@dimen/view_space_8"
+            />
+
+        <!--<EditText-->
+            <!--android:id="@+id/et_type_name"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="微信或支付宝"-->
+            <!--style="@style/SingleLineEditText"-->
+            <!--/>-->
+
+        <com.ps.androidlib.widget.nicespinner.NiceSpinner
+            android:id="@+id/nice_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_bank_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_line_1"
+            android:background="@color/color_divider2"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            style="@style/BackGauge">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="银 行 名 称 ："
+                android:textColor="@color/color_block"
+                android:textSize="@dimen/text_size_16"
+                android:padding="@dimen/view_space_8"
+                />
+
+            <EditText
+                android:id="@+id/et_bank_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请填写完整的银行名称"
+                style="@style/SingleLineEditText"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_line_1"
+        android:background="@color/color_divider2"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@style/BackGauge">
+        <TextView
+            android:id="@+id/tv_title_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付宝账号："
+            android:textColor="@color/color_block"
+            android:textSize="@dimen/text_size_16"
+            android:padding="@dimen/view_space_8"
+            />
+
+        <EditText
+            android:id="@+id/et_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请填写支付宝账号"
+            style="@style/SingleLineEditText"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_line_1"
+        android:background="@color/color_divider2"/>
+
+</LinearLayout>

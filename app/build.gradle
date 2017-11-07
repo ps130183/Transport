@@ -1,0 +1,134 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    signingConfigs {
+        transport {
+            keyAlias '石土科技'
+            keyPassword 'Transport2017'
+            storeFile file('/Users/PengSong/Desktop/ASWorkSpace/Transport/app/Transport.jks')
+            storePassword 'Transport2017'
+        }
+    }
+
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
+
+    }
+
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.km.transport"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 4
+        versionName "1.0.5"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // Enabling multidex support.
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false//去掉不用资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.transport
+            zipAlignEnabled true
+        }
+        debug {
+            signingConfig signingConfigs.transport
+        }
+        beta {
+            signingConfig signingConfigs.transport
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    //执行lint检查，有任何的错误或者警告提示，都会终止构建，我们可以将其关掉。
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    //PK打包重新命名
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def oldFile = output.outputFile
+
+            def releaseApkName = "Transport_" + defaultConfig.versionCode + '_v' + defaultConfig.versionName  + "_"+ buildType.name + '.apk'
+            output.outputFile = new File(oldFile.parent, releaseApkName)
+        }
+
+
+    }
+}
+
+def releaseTime() {
+    return new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("UTC"))
+}
+
+//okhttp-basicparamsinterceptor:v0.9' dialogutil
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        mavenCentral()
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: '*.jar', dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile project(':androidlib')
+    compile project(':pickerview')
+    //动态加载
+    compile project(':mainnavigatetabbar')
+    //    compile files('libs/open_sdk_r5781.jar')
+    //    compile files('libs/SocialSDK_QQ_Full.jar')
+    //    compile files('libs/SocialSDK_WeiXin_Full.jar')
+    //    compile files('libs/umeng_shareboard_widget.jar')
+    //    compile files('libs/umeng_social_api.jar')
+    //    compile files('libs/umeng_social_net.jar')
+    //    compile files('libs/umeng_social_shareboard.jar')
+    //    compile files('libs/umeng_social_tool.jar')
+    //greenDao 数据库框架
+    //compile 'net.zetetic:android-database-sqlcipher:3.5.4' //数据库加密时添加
+    //compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.2.0' //使用数据库升级辅助GreenDaoUpgradleHepler时添加
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.github.JiangAndroidwork:RetrofitOfRxJava:v2.3'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'org.greenrobot:greendao:3.2.2'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    //友盟统计
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    //跑马灯，可自定义布局
+    compile 'com.gongwen:marqueelibrary:1.1.1'
+    compile project(':PushSDK')
+    compile project(':libqrcode')
+    compile project(':guideShowLib')
+}
+
+//数据库版本以及Dao的相关设置
+greendao {
+    //数据库schema版本
+    schemaVersion 1
+    //设置DaoMaster DaoSession Dao包名，默认的是bean所在的包名
+    daoPackage 'com.km.transport.greendao'
+    //设置DaoMaster DaoSeeeion Dao目录，默认是build/generated/source/greendao
+    //targetGenDir 'src/main/greendao'
+    //设置true,自动生成测试单元
+    //generateTests 'true'
+    //设置生成的单元测试目录，默认是src/androidTest/java
+    //targetGenDirTests 'src/androidTest/java'
+}
+

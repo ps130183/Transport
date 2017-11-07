@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.km.transport.module.personal.approve.ApproveDriverInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <TextView
+                android:id="@+id/tv_step1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:text="1"
+                style="@style/ApproveStepSelected"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintHorizontal_bias="0.233"
+                app:layout_constraintVertical_bias="0.333"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/tv_step2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:text="2"
+                style="@style/ApproveStepSelected"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintHorizontal_bias="0.775"
+                app:layout_constraintVertical_bias="0.333"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/tv_step1_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="驾驶员信息"
+                android:textColor="@color/color_blue_level_1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_step1"
+                app:layout_constraintVertical_bias="0.0"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintHorizontal_bias="0.201"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/tv_step2_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车辆信息"
+                android:textColor="@color/color_blue_level_1"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_step2"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintHorizontal_bias="0.804"
+                app:layout_constraintVertical_bias="0.0"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <View
+                android:id="@+id/view_center"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/color_blue_level_1"
+                android:layout_marginRight="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_step1"
+                android:layout_marginLeft="0dp"
+                app:layout_constraintRight_toLeftOf="@+id/tv_step2"
+                app:layout_constraintVertical_bias="0.38" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:padding="@dimen/view_space_8"
+            android:layout_marginBottom="@dimen/view_space_8">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="行    车    本 *"
+                android:textColor="@color/color_block"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_space_8"/>
+
+
+            <ImageView
+                android:id="@+id/iv_arrow_driving"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_arrow_right_gray_24"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/view_space_8"
+                android:layout_centerVertical="true"
+                />
+
+            <ImageView
+                android:id="@+id/iv_vehicle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ic_default_portrait"
+                android:layout_toLeftOf="@+id/iv_arrow_driving"
+                android:layout_marginRight="@dimen/view_space_16"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:padding="@dimen/view_space_8">
+
+            <TextView
+                android:id="@+id/tv_license_plate_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车 牌 号 码 *"
+                android:textColor="@color/color_block"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_space_8"/>
+
+
+            <ImageView
+                android:id="@+id/iv_license_plate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_arrow_right_gray_24"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/view_space_8"
+                android:layout_centerVertical="true"
+                />
+
+            <EditText
+                android:id="@+id/et_license_plate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DefaultEditTextBg"
+                android:hint="如 京Q2402"
+                android:layout_toRightOf="@+id/tv_license_plate_title"
+                android:layout_marginLeft="@dimen/view_space_8"
+                android:layout_toLeftOf="@+id/iv_license_plate"
+                android:layout_marginRight="@dimen/view_space_8"
+                android:maxLength="18"
+                />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_line_1"
+            android:background="@color/color_divider1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:padding="@dimen/view_space_8">
+
+            <TextView
+                android:id="@+id/tv_max_weight_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最 大 载 重 *"
+                android:textColor="@color/color_block"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_space_8"/>
+
+
+            <ImageView
+                android:id="@+id/iv_max_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_arrow_right_gray_24"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/view_space_8"
+                android:layout_centerVertical="true"
+                />
+
+            <EditText
+                android:id="@+id/et_max_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DefaultEditTextBg"
+                android:hint="单位 吨"
+                android:layout_toRightOf="@+id/tv_max_weight_title"
+                android:layout_marginLeft="@dimen/view_space_8"
+                android:layout_toLeftOf="@+id/iv_max_weight"
+                android:layout_marginRight="@dimen/view_space_8"
+                android:inputType="number"
+                />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_line_1"
+            android:background="@color/color_divider1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:padding="@dimen/view_space_8">
+
+            <TextView
+                android:id="@+id/tv_name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车 辆 类 型  *"
+                android:textColor="@color/color_block"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_space_8"/>
+
+
+            <ImageView
+                android:id="@+id/iv_arrow_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_arrow_right_gray_24"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/view_space_8"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/tv_car_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DefaultEditTextBg"
+                android:layout_toRightOf="@+id/tv_name_title"
+                android:layout_marginLeft="@dimen/view_space_8"
+                android:layout_toLeftOf="@+id/iv_arrow_name"
+                android:layout_marginRight="@dimen/view_space_8"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_line_1"
+            android:background="@color/color_divider1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:padding="@dimen/view_space_8">
+
+            <TextView
+                android:id="@+id/tv_card_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车辆所在地 *"
+                android:textColor="@color/color_block"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_space_8"/>
+
+
+            <ImageView
+                android:id="@+id/iv_arrow_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_arrow_right_gray_24"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/view_space_8"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/tv_car_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/DefaultEditTextBg"
+                android:layout_toRightOf="@+id/tv_card_title"
+                android:layout_marginLeft="@dimen/view_space_8"
+                android:layout_toLeftOf="@+id/iv_arrow_card"
+                android:layout_marginRight="@dimen/view_space_8"
+                />
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_space_8"
+            android:paddingLeft="@dimen/view_space_32"
+            android:paddingRight="@dimen/view_space_32"
+            android:paddingTop="@dimen/view_space_8"
+            android:paddingBottom="@dimen/view_space_8"
+            android:orientation="vertical"
+            android:background="@color/color_white"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="安全提示"
+                android:textColor="#006533"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_line_1"
+                android:background="@color/color_divider1"
+                android:layout_marginTop="@dimen/view_space_6"
+                android:layout_marginBottom="@dimen/view_space_6"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="带*号的项修改以后，后台需要重新审核。\n土石科技的每位用户都是实名认证的，我们承诺绝对不会泄漏用户的任何信息。"
+                android:textColor="@color/color_block"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="提交认证"
+            android:textColor="@color/color_white"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:background="@drawable/shape_button_default"
+            android:layout_marginLeft="@dimen/view_space_48"
+            android:layout_marginRight="@dimen/view_space_48"
+            android:layout_marginTop="@dimen/view_space_16"
+            android:layout_marginBottom="@dimen/view_space_16"
+            />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

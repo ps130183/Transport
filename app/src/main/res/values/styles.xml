@@ -1,0 +1,123 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="DefaultCheckBoxStyle">
+        <item name="android:background">@drawable/selector_checkbox_truck_type</item>
+        <item name="android:textColor">@drawable/selector_checkbox_truck_type_text</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="HomeTopRadioButton">
+        <item name="android:button">@null</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textColor">@drawable/selector_home_top_radio_button_text_color</item>
+    </style>
+    
+    <style name="HomeGoodsSearchConditionText">
+        <item name="android:textColor">@color/color_block</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DefaultEditTextBg">
+        <item name="android:background">@color/color_white</item>
+        <item name="android:padding">@dimen/view_space_8</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+    </style>
+
+    <style name="DefaultButtonBg">
+        <item name="android:background">@drawable/shape_button_home_hire</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">@dimen/view_space_48</item>
+        <item name="android:layout_marginRight">@dimen/view_space_48</item>
+    </style>
+
+    <style name="DefaultButtonBg1">
+        <item name="android:background">@drawable/shape_button_home_hire</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LoginButtonBgBlue">
+        <item name="android:background">@drawable/shape_button_default</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="DefaultLinearLayoutBg">
+        <item name="android:background">@color/color_white</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/view_space_8</item>
+    </style>
+
+    <style name="Personal" />
+
+    <style name="Personal.function_tv">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/view_space_8</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="Personal.function_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/view_space_8</item>
+        <item name="android:background">@color/color_white</item>
+        <item name="android:layout_marginBottom">@dimen/view_space_8</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="ApproveStepUnselected">
+        <item name="android:background">@drawable/shape_approve_step_unselected</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/color_divider2</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+    </style>
+
+    <style name="ApproveStepSelected">
+        <item name="android:background">@drawable/shape_approve_step_selected</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/color_blue_level_1</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+    </style>
+
+    <style name="BackGauge">
+        <item name="android:paddingLeft">@dimen/view_space_16</item>
+        <item name="android:paddingTop">@dimen/view_space_8</item>
+        <item name="android:paddingBottom">@dimen/view_space_8</item>
+    </style>
+    <style name="SingleLineEditText">
+        <item name="android:lines">1</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:background">@color/color_white</item>
+        <item name="android:paddingTop">@dimen/view_space_8</item>
+        <item name="android:paddingBottom">@dimen/view_space_8</item>
+    </style>
+
+    <style name="Personal.User" />
+    <style name="Personal.User.Setting" />
+
+    <style name="Personal.User.Setting.tv">
+        <item name="android:paddingTop">@dimen/view_space_16</item>
+        <item name="android:paddingBottom">@dimen/view_space_16</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+    </style>
+</resources>

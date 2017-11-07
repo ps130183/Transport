@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white"
+    android:padding="@dimen/view_space_8"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="起点："
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/color_block"
+            />
+        <TextView
+            android:id="@+id/tv_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北京"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/color_block"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/ll_start">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="终点："
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/color_block"
+            />
+        <TextView
+            android:id="@+id/tv_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="沧州"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/color_block"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_goods_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="籽料/20吨/17.5米／平板"
+        android:layout_below="@+id/ll_end"
+        android:layout_marginTop="@dimen/view_space_8"
+        android:layout_marginBottom="@dimen/view_space_4"
+        />
+
+
+
+    <ImageView
+        android:id="@+id/iv_user_portrait"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/ic_default_portrait"
+        android:layout_below="@+id/tv_goods_info"
+        android:layout_marginRight="@dimen/view_space_8"
+        />
+
+    <TextView
+        android:id="@+id/tv_nike_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="宋小宝"
+        android:layout_toRightOf="@+id/iv_user_portrait"
+        android:layout_alignTop="@+id/iv_user_portrait"
+        android:layout_above="@+id/tv_register_time"
+        />
+    <TextView
+        android:id="@+id/tv_register_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已注册4年已发货1234条"
+        android:layout_toRightOf="@+id/iv_user_portrait"
+        android:layout_alignBottom="@+id/iv_user_portrait"
+        />
+
+    <TextView
+        android:id="@+id/tv_login_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="刚刚"
+        android:layout_alignParentRight="true"
+        />
+    <Button
+        android:id="@+id/btn_hire"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:text="我要承运"
+        android:textSize="12sp"
+        android:textColor="@color/color_white"
+        android:background="@drawable/shape_button_home_hire"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv_login_time"
+        android:layout_marginTop="@dimen/view_space_16"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_down_price"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="12/t"
+        android:textColor="@color/color_white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/shape_goods_info_weight_tv"
+        android:layout_toLeftOf="@+id/btn_hire"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/view_space_32"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/tv_bidding_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2013-02-03 10:30"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/iv_user_portrait"
+        />
+
+
+</RelativeLayout>

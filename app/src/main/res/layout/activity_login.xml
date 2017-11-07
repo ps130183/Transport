@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.km.transport.module.login.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/color_white"
+        android:paddingLeft="@dimen/view_space_16"
+        android:layout_marginTop="@dimen/view_space_16">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="手机号"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/color_block"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/view_space_16"
+                />
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入手机号"
+                android:paddingTop="@dimen/view_space_16"
+                android:paddingBottom="@dimen/view_space_16"
+                android:paddingRight="@dimen/view_space_16"
+                android:background="@color/color_white"
+                android:textSize="@dimen/text_size_14"
+                android:inputType="phone"
+                android:maxLength="11"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_line_1"
+            android:background="@color/color_divider1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/view_space_16">
+            <TextView
+                android:id="@+id/tv_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="验证码"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/color_block"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/view_space_16"
+                />
+            <EditText
+                android:id="@+id/et_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入验证码"
+                android:paddingTop="@dimen/view_space_16"
+                android:paddingBottom="@dimen/view_space_16"
+                android:paddingRight="@dimen/view_space_16"
+                android:background="@color/color_white"
+                android:textSize="@dimen/text_size_14"
+                android:inputType="number"
+                android:maxLength="6"
+                android:layout_toRightOf="@id/tv_code"
+                android:layout_toLeftOf="@+id/v_code"
+                />
+
+            <View
+                android:id="@+id/v_code"
+                android:layout_width="@dimen/divider_line_1"
+                android:layout_height="30dp"
+                android:background="@color/color_divider2"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/tv_send_code"
+                />
+
+            <TextView
+                android:id="@+id/tv_send_code"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="发送验证码"
+                android:textColor="@color/color_text_gray2"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/view_space_16"
+                android:gravity="center"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/LoginButtonBgBlue"
+        android:text="登    录"
+        android:layout_marginTop="@dimen/view_space_16"
+        android:layout_marginBottom="@dimen/view_space_8"
+        android:layout_marginLeft="@dimen/view_space_16"
+        android:layout_marginRight="@dimen/view_space_16"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/view_space_16"
+        android:paddingRight="@dimen/view_space_16"
+        android:layout_marginTop="@dimen/view_space_8">
+        <TextView
+            android:id="@+id/tv_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册即代表同意 "
+            />
+        <TextView
+            android:id="@+id/tv_register_agreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="土石物流用户注册协议"
+            android:textColor="@color/color_blue_level_2"
+            android:layout_toRightOf="@+id/tv_agree"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/view_space_4"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/view_space_8"
+            android:text="河北土石物流科技有限公司"
+            android:gravity="center"
+            />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

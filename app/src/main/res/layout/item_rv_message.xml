@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_personal_message"
+    android:padding="@dimen/view_space_16"
+    android:layout_margin="@dimen/view_space_16">
+
+    <TextView
+        android:id="@+id/tv_message_source"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="来自某某某的消息"
+        android:textColor="#000000"
+        />
+    <TextView
+        android:id="@+id/tv_message_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2017-03-04"
+        android:layout_marginTop="@dimen/view_space_4"
+        android:layout_marginBottom="@dimen/view_space_4"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/tv_message_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#000000"
+        />
+
+</LinearLayout>

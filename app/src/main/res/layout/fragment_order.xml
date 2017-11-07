@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.km.transport.module.home.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/status_height"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
+                <RadioButton
+                    android:id="@+id/rab_unfinished"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未完成"
+                    style="@style/HomeTopRadioButton"
+                    android:background="@drawable/selector_home_top_radio_button_goods"
+                    />
+                <RadioButton
+                    android:id="@+id/rab_finished"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已完成"
+                    style="@style/HomeTopRadioButton"
+                    android:background="@drawable/selector_home_top_radio_button_path"
+                    />
+            </RadioGroup>
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_tool_bar_right"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="浏览记录"-->
+                <!--android:layout_gravity="right"-->
+                <!--android:textColor="@color/color_block"-->
+                <!--/>-->
+        </android.support.v7.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_line_0.5"
+            android:background="@color/color_divider1"/>
+
+        <FrameLayout
+            android:id="@+id/fl_order_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_white">
+
+        </FrameLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
