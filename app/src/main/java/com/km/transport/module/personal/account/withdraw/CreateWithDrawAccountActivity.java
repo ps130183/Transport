@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.km.transport.R;
 import com.km.transport.basic.BaseActivity;
 import com.km.transport.dto.WithDrawAccountDto;
+import com.km.transport.utils.PickerUtils;
 import com.ps.androidlib.widget.nicespinner.NiceSpinner;
 import com.ps.androidlib.widget.nicespinner.NiceSpinnerAdapter;
 import com.ps.androidlib.widget.nicespinner.SpinnerModel;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class CreateWithDrawAccountActivity extends BaseActivity<WithDrawPresenter> implements WithDrawContract.View {
 
@@ -44,6 +46,9 @@ public class CreateWithDrawAccountActivity extends BaseActivity<WithDrawPresente
     NiceSpinner mNiceSpinner;
     private List<SpinnerModel> spinnerModels;
 
+    private ArrayList<String> bankList = null;
+    private String[] banks = {"中国工商银行","中国农业银行","中国建设银行","中国邮政储蓄银行","交通银行","中信银行","招商银行","兴业银行"};
+
     private boolean isCreate;
     @Override
     protected int getContentView() {
@@ -62,6 +67,7 @@ public class CreateWithDrawAccountActivity extends BaseActivity<WithDrawPresente
             isCreate = false;
             return "编辑信息";
         }
+
     }
 
     @Override
@@ -99,7 +105,7 @@ public class CreateWithDrawAccountActivity extends BaseActivity<WithDrawPresente
         });
 
         initSpinner();
-
+        initBnakList();
         if (!isCreate){//编辑
             etName.setText(withDrawAccountDto.getUserName());
             etPhone.setText(withDrawAccountDto.getUserPhone());
@@ -116,6 +122,13 @@ public class CreateWithDrawAccountActivity extends BaseActivity<WithDrawPresente
 
 
             etAccount.setText(withDrawAccountDto.getCardNumber());
+        }
+    }
+
+    private void initBnakList(){
+        bankList = new ArrayList<>();
+        for (String bank : banks){
+            bankList.add(bank);
         }
     }
 
@@ -164,6 +177,16 @@ public class CreateWithDrawAccountActivity extends BaseActivity<WithDrawPresente
                         etAccount.setHint("请填写银行卡账号");
                         break;
                 }
+            }
+        });
+    }
+
+    @OnClick(R.id.et_bank_name)
+    public void selectBankName(View view){
+        PickerUtils.alertBottomWheelOption(CreateWithDrawAccountActivity.this, bankList, new PickerUtils.OnWheelViewClick() {
+            @Override
+            public void onClick(View view, int postion) {
+                etBankName.setText(bankList.get(postion));
             }
         });
     }

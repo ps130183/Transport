@@ -147,7 +147,7 @@ public class GoodsOrderInfoActivity extends BaseActivity<GoodsOrderInfoPresenter
                 tvStockBanks.setText(goodsOrderDetailDto.getStockBanks());
                 tvClientName.setText(goodsOrderDetailDto.getClientName());
                 tvManufacture.setText(goodsOrderDetailDto.getManufacturer());
-                tvStockUnits.setText(goodsOrderDetailDto.getStockUnits());
+                tvStockUnits.setText(goodsOrderDetailDto.getTrafficUnit());
                 tvLicensePlate.setText(goodsOrderDetailDto.getLicensePlate());
                 tvOutTunnage.setText(goodsOrderDetailDto.getTunnage() + "吨");
             }

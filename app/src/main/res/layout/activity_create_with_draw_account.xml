@@ -123,6 +123,8 @@
                 android:layout_height="wrap_content"
                 android:hint="请填写完整的银行名称"
                 style="@style/SingleLineEditText"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 />
 
         </LinearLayout>

@@ -88,7 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_line_1"
@@ -100,11 +100,11 @@
         <Button
             android:id="@+id/btn_function"
             android:layout_width="70dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             style="@style/DefaultButtonBg"
             android:layout_marginRight="0dp"
             android:text="去取货"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:layout_gravity="right"
             />
 

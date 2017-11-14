@@ -135,6 +135,12 @@ public class GoodsOrderDetailDto implements Parcelable {
      */
 
     private String sumPrice;
+    /**
+     * status : 2
+     * trafficUnit : 撒旦法
+     */
+
+    private String trafficUnit;
 
 
     public String getAccess() {
@@ -511,7 +517,8 @@ public class GoodsOrderDetailDto implements Parcelable {
                 ", stockBanks='" + stockBanks + '\'' +
                 ", stockUnits='" + stockUnits + '\'' +
                 ", licensePlate='" + licensePlate + '\'' +
-                ", sumPrice=" + sumPrice +
+                ", sumPrice='" + sumPrice + '\'' +
+                ", trafficUnit='" + trafficUnit + '\'' +
                 '}';
     }
 
@@ -588,6 +595,14 @@ public class GoodsOrderDetailDto implements Parcelable {
         this.sumPrice = sumPrice;
     }
 
+    public String getTrafficUnit() {
+        return trafficUnit;
+    }
+
+    public void setTrafficUnit(String trafficUnit) {
+        this.trafficUnit = trafficUnit;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -644,6 +659,7 @@ public class GoodsOrderDetailDto implements Parcelable {
         dest.writeString(this.stockUnits);
         dest.writeString(this.licensePlate);
         dest.writeString(this.sumPrice);
+        dest.writeString(this.trafficUnit);
     }
 
     protected GoodsOrderDetailDto(Parcel in) {
@@ -696,6 +712,7 @@ public class GoodsOrderDetailDto implements Parcelable {
         this.stockUnits = in.readString();
         this.licensePlate = in.readString();
         this.sumPrice = in.readString();
+        this.trafficUnit = in.readString();
     }
 
     public static final Creator<GoodsOrderDetailDto> CREATOR = new Creator<GoodsOrderDetailDto>() {

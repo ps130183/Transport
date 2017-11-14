@@ -56,8 +56,16 @@ public class HomeGoodsOrderAdapter extends BaseAdapter<HomeGoodsOrderDto> implem
         StringBuffer goodsInfoBuffer = new StringBuffer();
         goodsInfoBuffer.append(content.getMaterial()).append("/");
         goodsInfoBuffer.append(content.getDayTunnage()).append("/");
-        goodsInfoBuffer.append(content.getCarWidth()).append("米").append("/");
-        goodsInfoBuffer.append(content.getCarType());
+        goodsInfoBuffer.append(content.getCarWidth());
+        if ("不限".equals(content.getCarWidth())){
+            goodsInfoBuffer.append("车长");
+        } else {
+            goodsInfoBuffer.append("米");
+        }
+        goodsInfoBuffer.append("/").append(content.getCarType());
+        if ("不限".equals(content.getCarType())){
+            goodsInfoBuffer.append("车型");
+        }
         holder.tvGoodsInfo.setText(goodsInfoBuffer.toString());
 
         GlideUtils.loadCircleImage(holder.ivUserPortrait,content.getHeadImg());
