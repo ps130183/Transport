@@ -9,6 +9,7 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.google.gson.Gson;
 import com.hss01248.dialog.MyActyManager;
 import com.hss01248.dialog.StyledDialog;
@@ -17,6 +18,7 @@ import com.km.transport.event.UpdateMarqueeDataEvent;
 import com.km.transport.greendao.GreenDbManager;
 import com.km.transport.module.home.goods.GoodsOrderInfoActivity;
 import com.km.transport.service.UmengPushReveiveService;
+import com.km.transport.utils.UmengShareUtils;
 import com.km.transport.utils.crash.CrashHandler;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
@@ -49,14 +51,15 @@ public class BaseApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-        initCrashHandler();
+//        initCrashHandler();
         initLogUtils();
         initDateBase();
         registCallback();
         initUtils();
-//        UmengShareUtils.initUmengShare(this);
+        UmengShareUtils.initUmengShare(this);
         initEaseUI();
         initPush();
+        initBaiduMap();
 //        RxBus.config(AndroidSchedulers.mainThread());
     }
 
@@ -223,5 +226,12 @@ public class BaseApplication extends MultiDexApplication {
      */
     private void initDateBase() {
         GreenDbManager.getInstances().initDbHelp(this);
+    }
+
+    /**
+     * 初始化百度地图
+     */
+    private void initBaiduMap(){
+        SDKInitializer.initialize(this);
     }
 }

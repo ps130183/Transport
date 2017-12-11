@@ -19,7 +19,7 @@ public class UserAccountDetailDto {
      */
 
     private String accountId;
-    private int amount;
+    private String amount;
     private String content;
     private long createDate;
     private String id;
@@ -36,11 +36,11 @@ public class UserAccountDetailDto {
         this.accountId = accountId;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

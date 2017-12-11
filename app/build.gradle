@@ -18,17 +18,19 @@ android {
     }
 
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.km.transport"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 5
-        versionName "1.0.6"
+        versionCode 8
+        versionName "1.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // Enabling multidex support.
         multiDexEnabled true
+
+        ndk{abiFilters "armeabi","armeabi-v7a","x86","mips"}
     }
     buildTypes {
         release {
@@ -43,6 +45,8 @@ android {
         }
         beta {
             signingConfig signingConfigs.transport
+            //关键代码，release， debug为library中已有buildType
+            matchingFallbacks = ['release', 'debug']
         }
     }
     sourceSets {
@@ -57,15 +61,21 @@ android {
     }
 
     //PK打包重新命名
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def oldFile = output.outputFile
+//    applicationVariants.all { variant ->
+//        variant.outputs.each { output ->
+//            def oldFile = output.outputFile
+//
+//            def releaseApkName = "Transport_" + defaultConfig.versionCode + '_v' + defaultConfig.versionName  + "_"+ buildType.name + '.apk'
+//            output.outputFile = new File(oldFile.parent, releaseApkName)
+//        }
+//
+//
+//    }
 
-            def releaseApkName = "Transport_" + defaultConfig.versionCode + '_v' + defaultConfig.versionName  + "_"+ buildType.name + '.apk'
-            output.outputFile = new File(oldFile.parent, releaseApkName)
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "Transport_" + defaultConfig.versionCode + '_v' + defaultConfig.versionName + "_" + buildType.name + '.apk'
         }
-
-
     }
 }
 
@@ -90,14 +100,16 @@ dependencies {
     compile project(':pickerview')
     //动态加载
     compile project(':mainnavigatetabbar')
-    //    compile files('libs/open_sdk_r5781.jar')
-    //    compile files('libs/SocialSDK_QQ_Full.jar')
-    //    compile files('libs/SocialSDK_WeiXin_Full.jar')
-    //    compile files('libs/umeng_shareboard_widget.jar')
-    //    compile files('libs/umeng_social_api.jar')
-    //    compile files('libs/umeng_social_net.jar')
-    //    compile files('libs/umeng_social_shareboard.jar')
-    //    compile files('libs/umeng_social_tool.jar')
+    compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/open_sdk_r5781.jar')
+    compile files('libs/SocialSDK_QQ_Full.jar')
+    compile files('libs/SocialSDK_WeiXin_Full.jar')
+    compile files('libs/umeng_shareboard_widget.jar')
+    compile files('libs/umeng_social_api.jar')
+    compile files('libs/umeng_social_net.jar')
+    compile files('libs/umeng_social_shareboard.jar')
+    compile files('libs/umeng_social_tool.jar')
+    compile files('libs/wechat-sdk-android-with-mta-1.1.6.jar')
     //greenDao 数据库框架
     //compile 'net.zetetic:android-database-sqlcipher:3.5.4' //数据库加密时添加
     //compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.2.0' //使用数据库升级辅助GreenDaoUpgradleHepler时添加

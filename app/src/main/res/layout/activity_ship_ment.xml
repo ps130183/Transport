@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:hint="输入真实出货吨数"
             style="@style/DefaultEditTextBg"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:drawableLeft="@mipmap/ic_left_back_block"/>
 
         <View

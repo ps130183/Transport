@@ -130,6 +130,20 @@
                 android:drawableLeft="@mipmap/ic_personal_setting"
                 android:text="  更多设置" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="50dp"
+                android:background="@color/color_divider1"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/tv_share"
+                style="@style/Personal.function_tv"
+                android:drawableLeft="@mipmap/ic_personal_share"
+                android:text="  我要分享"
+                android:visibility="visible"/>
+
 
         </LinearLayout>
 

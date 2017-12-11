@@ -62,7 +62,7 @@ public class WithDrawActivity extends BaseActivity<WithDrawAPresenter> implement
     protected void onCreate() {
 
         withDrawAccountDto = getIntent().getParcelableExtra("withDrawAccountDto");
-        tvTypeName.setText(withDrawAccountDto.getAccountType());
+        tvTypeName.setText("银行卡".equals(withDrawAccountDto.getAccountType()) ? withDrawAccountDto.getBankName() : withDrawAccountDto.getAccountType());
         tvAccount.setText(withDrawAccountDto.getCardNumber());
 
 
@@ -75,7 +75,7 @@ public class WithDrawActivity extends BaseActivity<WithDrawAPresenter> implement
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!TextUtils.isEmpty(s)){//提现金额 为空 或为0
+                if (!TextUtils.isEmpty(s) && !"0".equals(s)){//提现金额 为空 或为0
                     btnWithdraw.setBackgroundResource(R.drawable.shape_withdraw_btn_click);
                 } else {
                     btnWithdraw.setBackgroundResource(R.drawable.shape_withdraw_btn_unclick);
@@ -104,6 +104,10 @@ public class WithDrawActivity extends BaseActivity<WithDrawAPresenter> implement
         String witndrawMoney = etMoney.getText().toString();
         if (TextUtils.isEmpty(witndrawMoney)){
             showToast("请输入提现金额");
+            return;
+        }
+        if ("0".equals(witndrawMoney)){
+            showToast("提现金额必须大于0");
             return;
         }
         mPresenter.submitWithdraw(withDrawAccountDto,witndrawMoney);

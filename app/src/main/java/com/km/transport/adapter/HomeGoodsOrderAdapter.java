@@ -55,7 +55,7 @@ public class HomeGoodsOrderAdapter extends BaseAdapter<HomeGoodsOrderDto> implem
         holder.tvEnd.setText(content.getBournProvince() + content.getBournCity() + content.getBournZoning());
         StringBuffer goodsInfoBuffer = new StringBuffer();
         goodsInfoBuffer.append(content.getMaterial()).append("/");
-        goodsInfoBuffer.append(content.getDayTunnage()).append("/");
+        goodsInfoBuffer.append(content.getDayTunnage()).append("吨/");
         goodsInfoBuffer.append(content.getCarWidth());
         if ("不限".equals(content.getCarWidth())){
             goodsInfoBuffer.append("车长");

@@ -47,6 +47,7 @@ public class UserInfoDto implements Parcelable {
 
     private String licensePlate;
     private String maxLoad;
+    private String shareUrl;
 
     public String getLicensePlate() {
         return licensePlate;
@@ -192,6 +193,14 @@ public class UserInfoDto implements Parcelable {
         this.validStatus = validStatus;
     }
 
+    public String getShareUrl() {
+        return shareUrl;
+    }
+
+    public void setShareUrl(String shareUrl) {
+        this.shareUrl = shareUrl;
+    }
+
     @Override
     public String toString() {
         return "UserInfoDto{" +
@@ -212,6 +221,9 @@ public class UserInfoDto implements Parcelable {
                 ", validStatus=" + validStatus +
                 ", updateDate=" + updateDate +
                 ", readStatus=" + readStatus +
+                ", licensePlate='" + licensePlate + '\'' +
+                ", maxLoad='" + maxLoad + '\'' +
+                ", shareUrl='" + shareUrl + '\'' +
                 '}';
     }
 
@@ -252,6 +264,7 @@ public class UserInfoDto implements Parcelable {
         dest.writeInt(this.readStatus);
         dest.writeString(this.licensePlate);
         dest.writeString(this.maxLoad);
+        dest.writeString(this.shareUrl);
     }
 
     protected UserInfoDto(Parcel in) {
@@ -274,6 +287,7 @@ public class UserInfoDto implements Parcelable {
         this.readStatus = in.readInt();
         this.licensePlate = in.readString();
         this.maxLoad = in.readString();
+        this.shareUrl = in.readString();
     }
 
     public static final Creator<UserInfoDto> CREATOR = new Creator<UserInfoDto>() {

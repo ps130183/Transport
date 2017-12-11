@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.km.transport.R;
 import com.km.transport.basic.BaseActivity;
 import com.km.transport.dto.GoodsOrderDetailDto;
+import com.km.transport.module.MainActivity;
+import com.km.transport.module.home.map.MapActivity;
 import com.km.transport.module.personal.PersonalPresenter;
 import com.km.transport.utils.PickerUtils;
 import com.lvfq.pickerview.TimePickerView;
@@ -126,8 +128,16 @@ public class GoodsSourceInfoActivity extends BaseActivity<GoodsSourceInfoPresent
             tvPrice.setText(goodsOrderDetailDto.getPrice() + "元/吨");
             StringBuffer demandTypeBuf = new StringBuffer();
             demandTypeBuf.append(goodsOrderDetailDto.getMaterial()).append("/")
-                    .append(goodsOrderDetailDto.getCarWidth()).append("米/")
-                    .append(goodsOrderDetailDto.getCarType());
+                    .append(goodsOrderDetailDto.getCarWidth());
+            if ("不限".equals(goodsOrderDetailDto.getCarWidth())){
+                demandTypeBuf.append("车长");
+            } else {
+                demandTypeBuf.append("米");
+            }
+            demandTypeBuf.append("/").append(goodsOrderDetailDto.getCarType());
+            if ("不限".equals(goodsOrderDetailDto.getCarType())){
+                demandTypeBuf.append("车型");
+            }
             tvDemandType.setText(demandTypeBuf.toString());
             tvDemandNumberDay.setText(goodsOrderDetailDto.getDayTunnage() + "吨");
             tvRemark.setText(goodsOrderDetailDto.getComment());
@@ -203,6 +213,18 @@ public class GoodsSourceInfoActivity extends BaseActivity<GoodsSourceInfoPresent
         }
     }
 
+
+    /**
+     * 打开地图
+     * @param view
+     */
+    @OnClick(R.id.tv_open_map)
+    public void openMap(View view){
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("goodsInfo",goodsOrderDetailDto);
+        toNextActivity(MapActivity.class,bundle);
+    }
+
     @PermissionSuccess(requestCode = 1)
     public void callPhone(){
         String phone = tvBossPhone.getText().toString();
@@ -261,6 +283,8 @@ public class GoodsSourceInfoActivity extends BaseActivity<GoodsSourceInfoPresent
     public void confirmOrderSuccess(String orderId) {
         Bundle bundle = new Bundle();
         bundle.putString("orderId",orderId);
+        bundle.putBoolean("orderDetails",false);
+        bundle.putBoolean("toUnfinishOrders",true);
         toNextActivity(GoodsOrderInfoActivity.class,bundle);
     }
 }

@@ -193,13 +193,12 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/DefaultLinearLayoutBg"
-            android:layout_margin="@dimen/view_space_8">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_line_1"
+                android:background="@color/color_divider1"
+                android:layout_marginTop="@dimen/view_space_8"
+                android:layout_marginBottom="@dimen/view_space_8"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -256,13 +255,12 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/DefaultLinearLayoutBg"
-            android:layout_margin="@dimen/view_space_8">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_line_1"
+                android:background="@color/color_divider1"
+                android:layout_marginTop="@dimen/view_space_8"
+                android:layout_marginBottom="@dimen/view_space_8"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -319,32 +317,39 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_line_1"
+                android:background="@color/color_divider1"
+                android:layout_marginTop="@dimen/view_space_8"
+                android:layout_marginBottom="@dimen/view_space_8"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/view_space_8"
+                android:paddingBottom="@dimen/view_space_8"
+                android:background="@color/color_white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="运输费用"
+                    android:layout_marginRight="@dimen/view_space_8"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_all_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    />
+
+            </LinearLayout>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/color_white"
-            android:padding="@dimen/view_space_8"
-            android:layout_marginLeft="@dimen/view_space_8"
-            android:layout_marginRight="@dimen/view_space_8">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="运输费用"
-                android:layout_marginRight="@dimen/view_space_8"
-                />
-
-            <TextView
-                android:id="@+id/tv_all_money"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                />
-
-        </LinearLayout>
 
     </LinearLayout>
 

@@ -13,6 +13,7 @@ import com.km.transport.basic.BaseActivity;
 import com.km.transport.dto.GoodsOrderDetailDto;
 import com.km.transport.event.ShipmentEvent;
 import com.km.transport.module.MainActivity;
+import com.km.transport.module.home.map.MapActivity;
 import com.km.transport.module.order.unfinished.PutStorageActivity;
 import com.km.transport.module.order.unfinished.ShipMentActivity;
 import com.km.transport.utils.QRCodeUtils;
@@ -23,6 +24,7 @@ import com.ps.androidlib.utils.EventBusUtils;
 import java.util.Date;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class GoodsOrderInfoActivity extends BaseActivity<GoodsOrderInfoPresenter> implements GoodsOrderInfoContract.View {
 
@@ -70,7 +72,9 @@ public class GoodsOrderInfoActivity extends BaseActivity<GoodsOrderInfoPresenter
     TextView tvOutTunnage;
 
     private boolean isOrderDetails;
+    private boolean toUnfinishOrders;
 
+    private GoodsOrderDetailDto mGoodsInfo;
     @Override
     protected int getContentView() {
         return R.layout.activity_goods_order_info;
@@ -89,14 +93,36 @@ public class GoodsOrderInfoActivity extends BaseActivity<GoodsOrderInfoPresenter
     @Override
     protected void onCreate() {
         String orderId = getIntent().getStringExtra("orderId");
-        isOrderDetails = getIntent().getBooleanExtra("orderDetails",true);
+        isOrderDetails = getIntent().getBooleanExtra("orderDetails", true);
+        toUnfinishOrders = getIntent().getBooleanExtra("toUnfinishOrders", false);
         mPresenter.getGoodsOrderInfo(orderId);
+
+        if (toUnfinishOrders) {
+            setLeftIconClick(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("position", 1);
+                    toNextActivity(MainActivity.class, bundle);
+                }
+            });
+            setClickKeyCodeBackLisenter(new OnClickKeyCodeBackLisenter() {
+                @Override
+                public boolean onClickKeyCodeBack() {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("position", 1);
+                    toNextActivity(MainActivity.class, bundle);
+                    return false;
+                }
+            });
+        }
 
     }
 
     @Override
     public void showGoodsOrderInfo(final GoodsOrderDetailDto goodsOrderDetailDto) {
-        if (isOrderDetails){
+        if (isOrderDetails || goodsOrderDetailDto.getStatus() == 1) {
+            mGoodsInfo = goodsOrderDetailDto;
             llOrderInfo.setVisibility(View.VISIBLE);
             StringBuffer fastPathBuffer = new StringBuffer();
             fastPathBuffer.append("起点：")
@@ -115,9 +141,17 @@ public class GoodsOrderInfoActivity extends BaseActivity<GoodsOrderInfoPresenter
             tvMastPrice.setText(goodsOrderDetailDto.getDealQuote() + "元/吨");
             StringBuffer demandTypeBuf = new StringBuffer();
             demandTypeBuf.append(goodsOrderDetailDto.getMaterial()).append("/")
-                    .append(TextUtils.isEmpty(goodsOrderDetailDto.getTunnage()) ? "" : goodsOrderDetailDto.getTunnage()+"吨/")
-                    .append(goodsOrderDetailDto.getCarWidth()).append("米/")
-                    .append(goodsOrderDetailDto.getCarType());
+                    .append(TextUtils.isEmpty(goodsOrderDetailDto.getTunnage()) ? "" : goodsOrderDetailDto.getTunnage() + "吨/")
+                    .append(goodsOrderDetailDto.getCarWidth());
+            if ("不限".equals(goodsOrderDetailDto.getCarWidth())) {
+                demandTypeBuf.append("车长");
+            } else {
+                demandTypeBuf.append("米");
+            }
+            demandTypeBuf.append("/").append(goodsOrderDetailDto.getCarType());
+            if ("不限".equals(goodsOrderDetailDto.getCarType())) {
+                demandTypeBuf.append("车型");
+            }
             tvCarType.setText(demandTypeBuf.toString());
             tvDemandNumberDay.setText(goodsOrderDetailDto.getDayTunnage() + "吨");
             tvRemark.setText(goodsOrderDetailDto.getComment());
@@ -138,7 +172,7 @@ public class GoodsOrderInfoActivity extends BaseActivity<GoodsOrderInfoPresenter
 
             tvReceiveTime.setText(DateUtils.getInstance().dateToString(new Date(goodsOrderDetailDto.getAcceptTime()), DateUtils.YMDHM));
         } else {
-            if (goodsOrderDetailDto.getStatus() == 2 || goodsOrderDetailDto.getStatus() == 5){
+            if (goodsOrderDetailDto.getStatus() == 2 || goodsOrderDetailDto.getStatus() == 5) {
                 //二维码
                 ivOrderQRCode.setVisibility(View.VISIBLE);
                 ivOrderQRCode.setImageBitmap(QRCodeUtils.createQRCode(GoodsOrderInfoActivity.this, goodsOrderDetailDto.getCodeUrl()));
@@ -153,7 +187,7 @@ public class GoodsOrderInfoActivity extends BaseActivity<GoodsOrderInfoPresenter
             }
         }
 
-        if (goodsOrderDetailDto.getStatus() == 1 || goodsOrderDetailDto.getStatus() == 2){
+        if (goodsOrderDetailDto.getStatus() == 1 || goodsOrderDetailDto.getStatus() == 2) {
             setRightBtnClick("取消订单", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -174,8 +208,8 @@ public class GoodsOrderInfoActivity extends BaseActivity<GoodsOrderInfoPresenter
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("orderId",goodsOrderDetailDto.getId());
-                    toNextActivity(ShipMentActivity.class,bundle);
+                    bundle.putString("orderId", goodsOrderDetailDto.getId());
+                    toNextActivity(ShipMentActivity.class, bundle);
                 }
             });
 
@@ -185,13 +219,23 @@ public class GoodsOrderInfoActivity extends BaseActivity<GoodsOrderInfoPresenter
             btnSendGoods.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    toNextActivity(PutStorageActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("orderId", goodsOrderDetailDto.getId());
+                    toNextActivity(PutStorageActivity.class,bundle);
+                }
+            });
+
+            setRightBtnClick("开始发货", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("orderId", goodsOrderDetailDto.getId());
+                    toNextActivity(ShipMentActivity.class, bundle);
                 }
             });
         } else {
             btnSendGoods.setVisibility(View.GONE);
         }
-
 
 
     }
@@ -200,5 +244,12 @@ public class GoodsOrderInfoActivity extends BaseActivity<GoodsOrderInfoPresenter
     public void cancelOrderSuccess() {
         EventBusUtils.post(new ShipmentEvent());
         toNextActivity(MainActivity.class);
+    }
+
+    @OnClick(R.id.tv_open_map)
+    public void openMap(View view){
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("goodsInfo",mGoodsInfo);
+        toNextActivity(MapActivity.class,bundle);
     }
 }

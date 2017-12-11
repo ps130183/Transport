@@ -101,7 +101,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void requestPremission() {
-        String[] locationPermission = {Manifest.permission.READ_PHONE_STATE,
+        String[] locationPermission = {
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE};
         PermissionGen.needPermission(MainActivity.this, 1, locationPermission);
     }

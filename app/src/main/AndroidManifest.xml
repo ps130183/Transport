@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.km.transport">
+    package="com.km.transport"> <!-- 友盟统计 -->
+    <uses-sdk android:minSdkVersion="8" />
 
     <!-- if you want to maxLoad images from the internet -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,14 +17,66 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-
-    <!--  友盟统计  -->
-    <uses-sdk android:minSdkVersion="8"></uses-sdk>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <!--  友盟统计  -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 友盟统计 -->
+
+
+    <!-- 友盟分享 权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- 友盟分享 权限 -->
+
+
+    <!-- 百度地图 api -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    //获取设备网络状态，禁用后无法获取网络状态
+    <uses-permission android:name="android.permission.INTERNET" />
+    //网络权限，当禁用后，无法进行检索等相关业务
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    //读取设备硬件信息，统计数据
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    //读取系统信息，包含系统版本等信息，用作统计
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    //获取设备的网络状态，鉴权所需网络代理
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    //允许sd卡写权限，需写入地图数据，禁用后无法显示地图
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    //获取统计数据
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    //鉴权所需该权限获取进程列表
+    <uses-permission android:name="android.permission.CAMERA" />
+    //使用步行AR导航，配置Camera权限
+
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <!-- 用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <!-- 访问网络，网络定位需要上网-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- SD卡读取权限，用户写入离线定位数据-->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+    <!-- 百度地图 api -->
+
 
     <!-- 多分辨率支持 -->
     <supports-screens
@@ -42,30 +95,66 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--  友盟统计  -->
-        <meta-data android:value="59e705b4677baa75cc000748" android:name="UMENG_APPKEY"/>
-        <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>
-        <!--  友盟统计  -->
-        <!--  友盟推送  -->
+        <!-- 百度地图 -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="wA71cG8D2oItWqHOz21GG52PCLE6eVG0" />
+        <!-- 百度地图 -->
+
+
+        <!-- 友盟统计 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="59e705b4677baa75cc000748" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Channel ID" />
+        <!-- 友盟统计 -->
+        <!-- 友盟推送 -->
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="e79fa2a8c6dea85f5e655358263248a4">
-        </meta-data>
-        <!--  友盟推送  -->
+            android:value="e79fa2a8c6dea85f5e655358263248a4"></meta-data>
+        <!-- 友盟推送 -->
 
-        <service android:name=".service.UmengPushReveiveService"/>
+        <service android:name=".service.UmengPushReveiveService" />
+
+        <!-- 友盟分享 -->
+
+
+        <!-- 微信分享 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- -QQ分享 -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1106326491" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- -QQ分享 -->
+
+
+        <!-- 友盟分享 -->
 
         <activity
             android:name=".module.MainActivity"
-            android:launchMode="singleTask">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+            android:launchMode="singleTask"></activity>
         <activity android:name=".module.guide.GuideActivity" />
         <activity android:name=".module.login.LoginActivity" />
         <activity android:name=".module.login.CreateUserCardOnLoginActivity" />
@@ -82,8 +171,9 @@
         <activity android:name=".module.home.goods.GoodsOrderFinishInfoActivity" />
         <activity android:name=".module.personal.approve.ApproveDriverInfoActivity" />
         <activity android:name=".module.personal.approve.ApproveTruckInfoActivity" />
-        <activity android:name=".module.personal.account.MyAccountActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".module.personal.account.MyAccountActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".module.personal.account.withdraw.CreateWithDrawAccountActivity" />
         <activity android:name=".module.personal.account.withdraw.WithDrawListActivity" />
         <activity android:name=".module.personal.account.withdraw.WithDrawActivity" />
@@ -98,7 +188,8 @@
         <activity android:name=".module.personal.approve.ChooseCarAddressActivity" />
         <activity android:name=".module.personal.SettingActivity" />
         <activity android:name=".module.personal.AboutMeActivity" />
-        <activity android:name=".module.personal.MessageActivity"></activity>
+        <activity android:name=".module.personal.MessageActivity" />
+        <activity android:name=".module.home.map.MapActivity"></activity>
     </application>
 
 </manifest>
