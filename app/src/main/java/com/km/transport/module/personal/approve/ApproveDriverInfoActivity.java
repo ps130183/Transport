@@ -100,16 +100,16 @@ public class ApproveDriverInfoActivity extends BaseActivity<ApproveDriverInfoPre
     @Override
     protected void onCreate() {
         mUserInfo = getIntent().getParcelableExtra("userInfo");
-        if (mUserInfo != null){
+        if (mUserInfo != null) {
             showUserInfo();
         }
     }
 
-    private void showUserInfo(){
+    private void showUserInfo() {
         userPortraitUrl = mUserInfo.getHeadImg();
         userDrivingUrl = mUserInfo.getDriveCard();
-        GlideUtils.loadCircleImage(ivUserPortrait,userPortraitUrl);
-        GlideUtils.loadImage(ivUserDriving,userDrivingUrl);
+        GlideUtils.loadCircleImage(ivUserPortrait, userPortraitUrl);
+        GlideUtils.loadImage(ivUserDriving, userDrivingUrl);
         etUserName.setText(TextUtils.isEmpty(mUserInfo.getName()) ? "" : mUserInfo.getName());
         etUserCard.setText(TextUtils.isEmpty(mUserInfo.getPersonalCard()) ? "" : mUserInfo.getPersonalCard());
         etUserPhone.setText(TextUtils.isEmpty(mUserInfo.getPhone()) ? "" : mUserInfo.getPhone());
@@ -121,13 +121,25 @@ public class ApproveDriverInfoActivity extends BaseActivity<ApproveDriverInfoPre
         String userCard = etUserCard.getText().toString();
         String userPhone = etUserPhone.getText().toString();
 
-        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(userCard) || TextUtils.isEmpty(userPhone)
-                || TextUtils.isEmpty(userPortraitUrl) || TextUtils.isEmpty(userDrivingUrl)){
-            showToast("请将信息补充完整");
+        if (TextUtils.isEmpty(name)) {
+            showToast("请编辑完姓名再进行下一步");
+            return;
+        } else if (TextUtils.isEmpty(userCard)) {
+            showToast("请编辑完身份证号再进行下一步");
+            return;
+        } else if (TextUtils.isEmpty(userPhone)) {
+            showToast("请编辑完手机号再进行下一步");
+            return;
+        } else if (TextUtils.isEmpty(userPortraitUrl)) {
+            showToast("请重新上传头像再进行下一步");
+            return;
+        } else if (TextUtils.isEmpty(userDrivingUrl)) {
+            showToast("请重新上传n驾驶证再进行下一步");
             return;
         }
 
-        if (mUserInfo == null){
+
+        if (mUserInfo == null) {
             mUserInfo = new UserInfoDto();
         }
         mUserInfo.setName(name);
@@ -137,26 +149,27 @@ public class ApproveDriverInfoActivity extends BaseActivity<ApproveDriverInfoPre
         mUserInfo.setDriveCard(userDrivingUrl);
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable("userInfo",mUserInfo);
+        bundle.putParcelable("userInfo", mUserInfo);
 
-        toNextActivity(ApproveTruckInfoActivity.class,bundle);
+        toNextActivity(ApproveTruckInfoActivity.class, bundle);
     }
 
-    @OnClick({R.id.iv_user_portrait,R.id.iv_arrow_portrait})
-    public void uploadUserPortrait(View view){
+    @OnClick({R.id.iv_user_portrait, R.id.iv_arrow_portrait})
+    public void uploadUserPortrait(View view) {
         uploadImg(1);
     }
 
-    @OnClick({R.id.iv_user_driving,R.id.iv_arrow_driving})
-    public void uploadUserDriving(View view){
+    @OnClick({R.id.iv_user_driving, R.id.iv_arrow_driving})
+    public void uploadUserDriving(View view) {
         uploadImg(2);
     }
 
     /**
      * 上传图片  1，头像 2，证件
+     *
      * @param imageType
      */
-    private void uploadImg(int imageType){
+    private void uploadImg(int imageType) {
         uploadImageType = imageType;
         String[] locationPermission = {Manifest.permission.CAMERA,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -168,13 +181,13 @@ public class ApproveDriverInfoActivity extends BaseActivity<ApproveDriverInfoPre
     }
 
     @PermissionSuccess(requestCode = 1)
-    public void requestCameraSuccess(){
+    public void requestCameraSuccess() {
         DialogUtils.showBottomDialogForChoosePhoto(new MyItemDialogListener() {
             @Override
             public void onItemClick(CharSequence charSequence, int i) {
-                switch (i){
+                switch (i) {
                     case 0:
-                        ImageUtils.getImageFromCamera(ApproveDriverInfoActivity.this,false,selectImageListener);
+                        ImageUtils.getImageFromCamera(ApproveDriverInfoActivity.this, false, selectImageListener);
                         break;
                     case 1:
                         ImageUtils.getImageFromPhotoAlbum(ApproveDriverInfoActivity.this,
@@ -187,35 +200,36 @@ public class ApproveDriverInfoActivity extends BaseActivity<ApproveDriverInfoPre
             }
         });
     }
+
     @PermissionFail(requestCode = 1)
-    public void requestCameraFail(){
+    public void requestCameraFail() {
         showToast("没有相机的使用权限");
     }
 
-    private ImageUtils.SelectImageListener selectImageListener =  new ImageUtils.SelectImageListener() {
+    private ImageUtils.SelectImageListener selectImageListener = new ImageUtils.SelectImageListener() {
         @Override
         public void onSuccess(List<String> photoList) {
             String imagePath = photoList.get(0);
 
-            if (uploadImageType == 1){ //上传头像
-                GlideUtils.loadCircleImage(ivUserPortrait,imagePath);
-            } else if (uploadImageType == 2){//上传 驾驶证
-                GlideUtils.loadImage(ivUserDriving,imagePath);
+            if (uploadImageType == 1) { //上传头像
+                GlideUtils.loadCircleImage(ivUserPortrait, imagePath);
+            } else if (uploadImageType == 2) {//上传 驾驶证
+                GlideUtils.loadImage(ivUserDriving, imagePath);
             }
             EventBusUtils.post(new UploadImageEvent(imagePath));
         }
     };
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onSelecedPhoto(UploadImageEvent event){
+    public void onSelecedPhoto(UploadImageEvent event) {
         com.ps.androidlib.utils.ImageUtils.compressImage(event.getImagePath(),
-                AppUtils.getCurWindowWidth(ApproveDriverInfoActivity.this)/2,
-                AppUtils.getCurWindowHeight(ApproveDriverInfoActivity.this)/2)
+                AppUtils.getCurWindowWidth(ApproveDriverInfoActivity.this) / 2,
+                AppUtils.getCurWindowHeight(ApproveDriverInfoActivity.this) / 2)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(@NonNull String s) throws Exception {
-                        mPresenter.uploadPicture(s,uploadImageType+"");
+                        mPresenter.uploadPicture(s, uploadImageType + "");
                     }
                 });
 
@@ -223,9 +237,9 @@ public class ApproveDriverInfoActivity extends BaseActivity<ApproveDriverInfoPre
 
     @Override
     public void uploadSuccess(String resultUrl) {
-        if (uploadImageType == 1){
+        if (uploadImageType == 1) {
             userPortraitUrl = resultUrl;
-        } else if (uploadImageType == 2){
+        } else if (uploadImageType == 2) {
             userDrivingUrl = resultUrl;
         }
     }

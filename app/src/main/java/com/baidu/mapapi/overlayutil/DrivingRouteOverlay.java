@@ -16,6 +16,7 @@ import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.route.DrivingRouteLine;
 import com.baidu.mapapi.search.route.DrivingRouteLine.DrivingStep;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +79,7 @@ public class DrivingRouteOverlay extends OverlayManager {
 
         if (mRouteLine.getStarting() != null) {
             overlayOptionses.add((new MarkerOptions())
+                    .title(getStartTitle() == null ? "" : getStartTitle())
                     .position(mRouteLine.getStarting().getLocation())
                             .icon(getStartMarker() != null ? getStartMarker() :
                                     BitmapDescriptorFactory
@@ -86,6 +88,7 @@ public class DrivingRouteOverlay extends OverlayManager {
         if (mRouteLine.getTerminal() != null) {
             overlayOptionses
                     .add((new MarkerOptions())
+                            .title(getEndTitle() == null ? "" : getEndTitle())
                             .position(mRouteLine.getTerminal().getLocation())
                                     .icon(getTerminalMarker() != null ? getTerminalMarker() :
                                             BitmapDescriptorFactory
@@ -160,6 +163,14 @@ public class DrivingRouteOverlay extends OverlayManager {
      * @return 起点图标
      */
     public BitmapDescriptor getStartMarker() {
+        return null;
+    }
+
+    public String getStartTitle(){
+        return null;
+    }
+
+    public String getEndTitle(){
         return null;
     }
 

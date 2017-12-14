@@ -33,6 +33,7 @@ import com.km.transport.greendao.CityManager;
 import com.km.transport.module.home.goods.GoodsSearchContract;
 import com.km.transport.module.home.goods.GoodsSearchPresenter;
 import com.km.transport.module.home.goods.GoodsSourceInfoActivity;
+import com.km.transport.ui.CustomMF;
 import com.km.transport.utils.Constant;
 import com.km.transport.utils.SwipeRefreshUtils;
 import com.nineoldandroids.animation.ObjectAnimator;
@@ -769,7 +770,7 @@ public class GoodsSearchActivity extends BaseActivity<GoodsSearchPresenter> impl
     @Override
     public void showMarqueeDatas(List<String> marqueeDatas) {
         this.marqueeDatas = marqueeDatas;
-        SimpleMF<String> marqueeFactory = new SimpleMF(this);
+        CustomMF marqueeFactory = new CustomMF(this);
         marqueeFactory.setData(marqueeDatas);
         simpleMarqueeView.setMarqueeFactory(marqueeFactory);
         simpleMarqueeView.startFlipping();
@@ -782,7 +783,7 @@ public class GoodsSearchActivity extends BaseActivity<GoodsSearchPresenter> impl
             marqueeDatas.add(0,event.getContent());
             marqueeDatas.remove(marqueeDatas.size() - 1);
 
-            SimpleMF<String> marqueeFactory = new SimpleMF(this);
+            CustomMF marqueeFactory = new CustomMF(this);
             marqueeFactory.setData(marqueeDatas);
             simpleMarqueeView.setMarqueeFactory(marqueeFactory);
             simpleMarqueeView.startFlipping();

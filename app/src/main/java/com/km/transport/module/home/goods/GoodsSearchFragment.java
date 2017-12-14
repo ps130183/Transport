@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.gongwen.marqueen.SimpleMF;
 import com.gongwen.marqueen.SimpleMarqueeView;
 import com.km.transport.R;
 import com.km.transport.adapter.HomeGoodsOrderAdapter;
@@ -25,17 +24,15 @@ import com.km.transport.basic.BaseFragment;
 import com.km.transport.basic.RVUtils;
 import com.km.transport.dto.GoodsOrderDetailDto;
 import com.km.transport.dto.HomeGoodsOrderDto;
-import com.km.transport.entity.CityEntity;
 import com.km.transport.entity.TruckTypeEntity;
 import com.km.transport.event.RefreshSearchGoodsEvent;
 import com.km.transport.event.UpdateMarqueeDataEvent;
 import com.km.transport.greendao.City;
 import com.km.transport.greendao.CityManager;
-import com.km.transport.ui.MarqueeTextView;
+import com.km.transport.ui.CustomMF;
 import com.km.transport.utils.Constant;
 import com.km.transport.utils.SwipeRefreshUtils;
 import com.nineoldandroids.animation.ObjectAnimator;
-import com.orhanobut.logger.Logger;
 import com.ps.androidlib.animator.ShowViewAnimator;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -43,7 +40,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -768,7 +764,7 @@ public class GoodsSearchFragment extends BaseFragment<GoodsSearchPresenter> impl
     @Override
     public void showMarqueeDatas(List<String> marqueeDatas) {
         this.marqueeDatas = marqueeDatas;
-        SimpleMF<String> marqueeFactory = new SimpleMF(getActivity());
+        CustomMF marqueeFactory = new CustomMF(getActivity());
         marqueeFactory.setData(marqueeDatas);
         simpleMarqueeView.setMarqueeFactory(marqueeFactory);
         simpleMarqueeView.startFlipping();
@@ -786,7 +782,7 @@ public class GoodsSearchFragment extends BaseFragment<GoodsSearchPresenter> impl
             marqueeDatas.add(0,event.getContent());
             marqueeDatas.remove(marqueeDatas.size() - 1);
 
-            SimpleMF<String> marqueeFactory = new SimpleMF(getActivity());
+            CustomMF marqueeFactory = new CustomMF(getActivity());
             marqueeFactory.setData(marqueeDatas);
             simpleMarqueeView.setMarqueeFactory(marqueeFactory);
             simpleMarqueeView.startFlipping();

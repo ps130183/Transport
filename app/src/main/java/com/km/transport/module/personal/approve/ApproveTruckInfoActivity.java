@@ -167,9 +167,20 @@ public class ApproveTruckInfoActivity extends BaseActivity<ApproveDriverInfoPres
     public void confirm(View view) {
         String licensePlate = etLicensePlate.getText().toString();
         String maxWeight = etMaxWeight.getText().toString();
-        if (TextUtils.isEmpty(vehicleUrl) || TextUtils.isEmpty(carType) || TextUtils.isEmpty(carAddress)
-                || TextUtils.isEmpty(licensePlate) || TextUtils.isEmpty(maxWeight)) {
-            showToast("请将车辆信息补充完整");
+        if (TextUtils.isEmpty(vehicleUrl)){
+            showToast("请重新上传行车本");
+            return;
+        } else if (TextUtils.isEmpty(carType)){
+            showToast("请选择车辆类型");
+            return;
+        } else if (TextUtils.isEmpty(carAddress)){
+            showToast("请选择车辆所在地");
+            return;
+        } else if (TextUtils.isEmpty(licensePlate)){
+            showToast("请编辑正确的车牌号码");
+            return;
+        } else if (TextUtils.isEmpty(maxWeight)) {
+            showToast("请编辑正确的最大载重");
             return;
         }
         if (mUserInfo != null) {

@@ -1,6 +1,15 @@
 package com.km.transport.module.home.map;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,8 +20,13 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.InfoWindow;
+import com.baidu.mapapi.map.Marker;
+import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.map.TextureMapView;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.RouteLine;
@@ -59,7 +73,10 @@ public class MapActivity extends BaseActivity {
 
     private boolean useDefaultIcon = true;
 
-    private RoutePlanSearch mSearch;
+    private RoutePlanSearch mStartSearch;
+    private RoutePlanSearch mEndSearch;
+
+    private String curAddress;
 
 
     @BindView(R.id.tv_start)
@@ -70,6 +87,8 @@ public class MapActivity extends BaseActivity {
     private double curLatitude = 0;
     private double curLongitude = 0;
 
+    private LatLng startLatLng, endLatLng;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_map;
@@ -77,7 +96,7 @@ public class MapActivity extends BaseActivity {
 
     @Override
     protected String getTitleName() {
-        return "当前位置";
+        return "运输路线";
     }
 
     @Override
@@ -91,13 +110,43 @@ public class MapActivity extends BaseActivity {
         mBaiduMap = mMapView.getMap();
         //普通地图（包含3D地图）
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
-        mBaiduMap.setMaxAndMinZoomLevel(3,15);
+        mBaiduMap.setMaxAndMinZoomLevel(3, 15);
         BaiduMapRoutePlan.setSupportWebRoute(true);
         initMapLocation();
-        planRoutePath();
+        addAddressInfoToStartAndEnd();
+
+        mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                TextView button = new Button(getApplicationContext());
+                button.setBackgroundResource(R.drawable.popup);
+                button.setPadding(20, 0, 20, 0);
+                //起点marker
+                if ("0".equals(marker.getTitle())) {
+                    button.setText(mGoodsInfo.getSourceProvince() + mGoodsInfo.getSourceCity() + mGoodsInfo.getSourceZoning() + mGoodsInfo.getSourceAdressDetail());
+                    //创建InfoWindow , 传入 view， 地理坐标， y 轴偏移量
+                    InfoWindow mInfoWindow = new InfoWindow(button, marker.getPosition(), -100);
+
+                    //显示InfoWindow
+                    mBaiduMap.showInfoWindow(mInfoWindow);
+                } else if ("1".equals(marker.getTitle())) {
+                    button.setText(mGoodsInfo.getBournProvince() + mGoodsInfo.getBournCity() + mGoodsInfo.getBournZoning() + mGoodsInfo.getBournAdressDetail());
+                    //创建InfoWindow , 传入 view， 地理坐标， y 轴偏移量
+                    InfoWindow mInfoWindow = new InfoWindow(button, marker.getPosition(), -100);
+
+                    //显示InfoWindow
+                    mBaiduMap.showInfoWindow(mInfoWindow);
+                } else {
+
+                }
+
+
+                return false;
+            }
+        });
     }
 
-    private void initData(){
+    private void initData() {
         StringBuffer fromBuf = new StringBuffer();
         fromBuf.append(mGoodsInfo.getSourceProvince())
                 .append(mGoodsInfo.getSourceCity())
@@ -177,15 +226,6 @@ public class MapActivity extends BaseActivity {
                 curLatitude = location.getLatitude();    //获取纬度信息
                 curLongitude = location.getLongitude();    //获取经度信息
 
-
-                float radius = location.getRadius();    //获取定位精度，默认值为0.0f
-
-                String coorType = location.getCoorType();
-                //获取经纬度坐标类型，以LocationClientOption中设置过的坐标类型为准
-
-                int errorCode = location.getLocType();
-                //获取定位类型、定位错误返回码，具体信息可参照类参考中BDLocation类中的说明
-
                 // 构造定位数据
                 MyLocationData locData = new MyLocationData.Builder()
                         .accuracy(location.getRadius())
@@ -193,19 +233,18 @@ public class MapActivity extends BaseActivity {
                         .direction(100).latitude(location.getLatitude())
                         .longitude(location.getLongitude()).build();
 
-// 设置定位数据
+                // 设置定位数据
                 mBaiduMap.setMyLocationData(locData);
 
                 int accuracyCircleFillColor = 0xAAFFFF88;//自定义精度圈填充颜色
                 int accuracyCircleStrokeColor = 0xAA00FF00;//自定义精度圈边框颜色
 
-// 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
+                // 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
                 BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
                         .fromResource(R.mipmap.map_arrow);
-                MyLocationConfiguration config = new MyLocationConfiguration(MyLocationConfiguration.LocationMode.FOLLOWING, true, mCurrentMarker,accuracyCircleFillColor,accuracyCircleStrokeColor);
+                MyLocationConfiguration config = new MyLocationConfiguration(MyLocationConfiguration.LocationMode.FOLLOWING, true, mCurrentMarker, accuracyCircleFillColor, accuracyCircleStrokeColor);
                 mBaiduMap.setMyLocationConfiguration(config);
-
-//                mBaiduMap.setMyLocationData();
+                planRoutePath();
             }
         });
 
@@ -216,7 +255,20 @@ public class MapActivity extends BaseActivity {
     /**
      * 规划驾车路线
      */
-    private void planRoutePath(){
+    private void planRoutePath() {
+        PlanNode fromNode = PlanNode.withCityNameAndPlaceName(
+                mGoodsInfo.getSourceCity(),
+                mGoodsInfo.getSourceZoning() + mGoodsInfo.getSourceAdressDetail());
+        PlanNode endNode = PlanNode.withCityNameAndPlaceName(
+                mGoodsInfo.getBournCity(),
+                mGoodsInfo.getBournZoning() + mGoodsInfo.getBournAdressDetail());
+        PlanNode curNode = PlanNode.withLocation(new LatLng(curLatitude, curLongitude));
+
+        setPlanDrivingRoute(mStartSearch, (new DrivingRoutePlanOption()).from(curNode).to(fromNode), true);
+        setPlanDrivingRoute(mEndSearch, (new DrivingRoutePlanOption()).from(curNode).to(endNode), false);
+    }
+
+    private void setPlanDrivingRoute(RoutePlanSearch mSearch, DrivingRoutePlanOption option, final boolean isStart) {
         mSearch = RoutePlanSearch.newInstance();
 
 //        PlanNode fromNode = PlanNode.withCityNameAndPlaceName(mGoodsInfo.getSourceCity(),mGoodsInfo.getSourceAdressDetail());
@@ -251,7 +303,13 @@ public class MapActivity extends BaseActivity {
                 }
                 RouteLine route = drivingRouteResult.getRouteLines().get(0);
 //                Logger.d(route.getTitle());
-                DrivingRouteOverlay overlay = new MyDrivingRouteOverlay(mBaiduMap);
+                String endMode;
+                if (isStart) {
+                    endMode = "0";
+                } else {
+                    endMode = "1";
+                }
+                DrivingRouteOverlay overlay = new MyDrivingRouteOverlay(mBaiduMap, endMode);
                 OverlayManager routeOverlay = overlay;
                 mBaiduMap.setOnMarkerClickListener(overlay);
                 overlay.setData(drivingRouteResult.getRouteLines().get(0));
@@ -272,23 +330,18 @@ public class MapActivity extends BaseActivity {
             }
         });
 
-
-        PlanNode fromNode = PlanNode.withCityNameAndPlaceName(
-                mGoodsInfo.getSourceCity(),
-                mGoodsInfo.getSourceZoning()+mGoodsInfo.getSourceAdressDetail());
-        PlanNode endNode = PlanNode.withCityNameAndPlaceName(
-                mGoodsInfo.getBournCity(),
-                mGoodsInfo.getBournZoning()+mGoodsInfo.getBournAdressDetail());
-        mSearch.drivingSearch((new DrivingRoutePlanOption()).from(fromNode).to(endNode));
-//        mSearch.destroy();
+        mSearch.drivingSearch(option);
 
     }
 
     // 定制RouteOverly
     private class MyDrivingRouteOverlay extends DrivingRouteOverlay {
 
-        public MyDrivingRouteOverlay(BaiduMap baiduMap) {
+        private String endMode;
+
+        public MyDrivingRouteOverlay(BaiduMap baiduMap, String endMode) {
             super(baiduMap);
+            this.endMode = endMode;
         }
 
         @Override
@@ -297,6 +350,16 @@ public class MapActivity extends BaseActivity {
                 return BitmapDescriptorFactory.fromResource(R.mipmap.map_icon_st);
             }
             return null;
+        }
+
+        @Override
+        public String getStartTitle() {
+            return "起点";
+        }
+
+        @Override
+        public String getEndTitle() {
+            return endMode;
         }
 
         @Override
@@ -325,13 +388,52 @@ public class MapActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         mMapView.onDestroy();
-        if (mSearch != null){
-            mSearch.destroy();
+        if (mStartSearch != null) {
+            mStartSearch.destroy();
+        }
+        if (mEndSearch != null) {
+            mEndSearch.destroy();
         }
     }
 
-    @OnClick(R.id.btn_open_navigation)
-    public void openNavigation(View view){
+    @OnClick(R.id.btn_to_start)
+    public void toStart(View view) {
+
+        GeoCoder mSearch = GeoCoder.newInstance();
+        mSearch.setOnGetGeoCodeResultListener(new OnGetGeoCoderResultListener() {
+            @Override
+            public void onGetGeoCodeResult(final GeoCodeResult geoCodeResult) {
+                if (geoCodeResult == null || geoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
+                    //没有检索到结果
+                    showToast("抱歉，没有检索到终点坐标");
+                    return;
+                }
+
+                //获取地理编码结果
+                DialogUtils.showDefaultAlertDialog("将要开启百度地图导航，是否继续？", new DialogUtils.ClickListener() {
+                    @Override
+                    public void clickConfirm() {
+                        openNavigation(geoCodeResult.getLocation());
+                    }
+                });
+
+            }
+
+            @Override
+            public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+
+            }
+        });
+
+
+        mSearch.geocode(new GeoCodeOption()
+                .city(mGoodsInfo.getSourceCity())
+                .address(mGoodsInfo.getSourceZoning() + mGoodsInfo.getSourceAdressDetail()));
+
+    }
+
+    @OnClick(R.id.btn_to_end)
+    public void toEnd(View view) {
 
         GeoCoder mSearch = GeoCoder.newInstance();
         mSearch.setOnGetGeoCodeResultListener(new OnGetGeoCoderResultListener() {
@@ -366,7 +468,7 @@ public class MapActivity extends BaseActivity {
 
     }
 
-    private void openNavigation(LatLng endLatLng){
+    private void openNavigation(LatLng endLatLng) {
         LatLng pt_start = new LatLng(curLatitude, curLongitude);
 //        LatLng pt_end = new LatLng(mLat2, mLon2);
 
@@ -376,10 +478,61 @@ public class MapActivity extends BaseActivity {
                 .endPoint(endLatLng);
         try {
 //            BaiduMapRoutePlan.openBaiduMapTransitRoute(para, this);
-            BaiduMapRoutePlan.openBaiduMapDrivingRoute(para,this);
+            BaiduMapRoutePlan.openBaiduMapDrivingRoute(para, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+    private void addAddressInfoToStartAndEnd() {
+        GeoCoder mSearchStart = GeoCoder.newInstance();
+        mSearchStart.setOnGetGeoCodeResultListener(new OnGetGeoCoderResultListener() {
+            @Override
+            public void onGetGeoCodeResult(final GeoCodeResult geoCodeResult) {
+                if (geoCodeResult == null || geoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
+                    //没有检索到结果
+                    showToast("抱歉，没有检索到起点坐标");
+                    return;
+                }
+                Logger.d("检索起点坐标");
+                startLatLng = geoCodeResult.getLocation();
+                Logger.d("起点坐标 ：  " + startLatLng.latitude + "," + startLatLng.longitude);
+            }
+
+            @Override
+            public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+
+            }
+        });
+        mSearchStart.geocode(new GeoCodeOption()
+                .city(mGoodsInfo.getSourceCity())
+                .address(mGoodsInfo.getSourceZoning() + mGoodsInfo.getSourceAdressDetail()));
+
+
+        GeoCoder mSearchEnd = GeoCoder.newInstance();
+        mSearchEnd.setOnGetGeoCodeResultListener(new OnGetGeoCoderResultListener() {
+            @Override
+            public void onGetGeoCodeResult(final GeoCodeResult geoCodeResult) {
+                if (geoCodeResult == null || geoCodeResult.error != SearchResult.ERRORNO.NO_ERROR) {
+                    //没有检索到结果
+                    showToast("抱歉，没有检索到终点坐标");
+                    return;
+                }
+                Logger.d("检索终点坐标");
+                endLatLng = geoCodeResult.getLocation();
+                Logger.d("终点坐标 ：  " + endLatLng.latitude + "," + endLatLng.longitude);
+            }
+
+            @Override
+            public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+
+            }
+        });
+        mSearchEnd.geocode(new GeoCodeOption()
+                .city(mGoodsInfo.getBournCity())
+                .address(mGoodsInfo.getBournZoning() + mGoodsInfo.getBournAdressDetail()));
+    }
+
 
 }

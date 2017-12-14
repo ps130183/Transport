@@ -68,18 +68,36 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_open_navigation"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/view_space_48"
+        android:layout_marginLeft="@dimen/view_space_16"
         android:layout_marginRight="@dimen/view_space_48"
         android:layout_marginBottom="@dimen/view_space_16"
-        android:text="开启导航"
-        android:textColor="@color/color_white"
-        android:textStyle="bold"
-        android:background="@drawable/selector_btn_open_navigation"
-        />
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_to_start"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="起点"
+            android:textStyle="bold"
+            android:background="@drawable/selector_btn_open_navigation"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"/>
+
+        <Button
+            android:id="@+id/btn_to_end"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="终点"
+            android:textStyle="bold"
+            android:background="@drawable/selector_btn_open_navigation"
+            />
+    </LinearLayout>
+
 
 </RelativeLayout>
