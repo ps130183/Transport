@@ -242,7 +242,9 @@ public class MapActivity extends BaseActivity {
                 // 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
                 BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
                         .fromResource(R.mipmap.map_arrow);
-                MyLocationConfiguration config = new MyLocationConfiguration(MyLocationConfiguration.LocationMode.FOLLOWING, true, mCurrentMarker, accuracyCircleFillColor, accuracyCircleStrokeColor);
+                MyLocationConfiguration config = new MyLocationConfiguration(MyLocationConfiguration.LocationMode.FOLLOWING,
+                        true, mCurrentMarker, accuracyCircleFillColor, accuracyCircleStrokeColor);
+
                 mBaiduMap.setMyLocationConfiguration(config);
                 planRoutePath();
             }
@@ -301,7 +303,7 @@ public class MapActivity extends BaseActivity {
                     showToast("抱歉，未找到合适的路线");
                     return;
                 }
-                RouteLine route = drivingRouteResult.getRouteLines().get(0);
+//                RouteLine route = drivingRouteResult.getRouteLines().get(0);
 //                Logger.d(route.getTitle());
                 String endMode;
                 if (isStart) {

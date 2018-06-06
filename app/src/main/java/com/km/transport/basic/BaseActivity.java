@@ -574,7 +574,10 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
                     @Override
                     public void onStart() {
                         super.onStart();
-                        DialogUtils.showDownloadDialog(context, "正在下载新版本" + appVersionDto.getVersionView() + ",请稍后。。。", false);
+                        //判断当前的activity是否已销毁
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && !context.isDestroyed()){
+                            DialogUtils.showDownloadDialog(context, "正在下载新版本" + appVersionDto.getVersionView() + ",请稍后。。。", false);
+                        }
                     }
 
                     @Override

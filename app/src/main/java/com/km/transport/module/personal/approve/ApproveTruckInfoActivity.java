@@ -255,6 +255,10 @@ public class ApproveTruckInfoActivity extends BaseActivity<ApproveDriverInfoPres
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(@NonNull String s) throws Exception {
+                        if (TextUtils.isEmpty(s)){
+                            showToast("获取图片失败，请重新上传");
+                            return;
+                        }
                         mPresenter.uploadPicture(s, "2");
                     }
                 });

@@ -62,11 +62,6 @@ public class RetrofitUtil {
 
     private static Retrofit getRetrofit() {
         if (retrofit == null) {
-            //公共参数
-//             BasicParamsInterceptor basicParamsInterceptor =
-//                    new BasicParamsInterceptor.Builder()
-//                            .addQueryParam("token", params.token)
-//                            .build();
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                 @Override
                 public void log(String message) {

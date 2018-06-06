@@ -193,6 +193,9 @@ public class MainNavigateTabBar extends LinearLayout implements View.OnClickList
      * @param holder
      */
     private void showFragment(ViewHolder holder) {
+        if (mFragmentActivity == null){
+            return;
+        }
         FragmentTransaction transaction = mFragmentActivity.getSupportFragmentManager().beginTransaction();
         if (isFragmentShown(transaction, holder.tag)) {
             return;
@@ -276,7 +279,7 @@ public class MainNavigateTabBar extends LinearLayout implements View.OnClickList
                 transaction.hide(fragment);
             }
         }
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
     public void setSelectedTabTextColor(ColorStateList selectedTextColor) {
